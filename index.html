@@ -324,7 +324,7 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
   text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
 .mg-section .mg-label::after{content:"";flex:1;height:1px;background:var(--line)}
 .mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.5rem}
-.mg-grid img{width:100%;border-radius:8px;border:1px solid var(--line);cursor:pointer;transition:.25s;display:block}
+.mg-grid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line);cursor:pointer;transition:.25s;display:block}
 .mg-grid img:hover{transform:scale(1.02);box-shadow:0 0 20px -6px var(--accent);border-color:var(--accent)}
 .mg-video{width:100%;border-radius:8px;border:1px solid var(--line);background:#000;aspect-ratio:16/9;object-fit:contain;cursor:pointer}
 .mg-video:focus{outline:2px solid var(--accent)}
