@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潘宪 · PAN XIAN — 市场专员作品集</title>
+<meta name="description" content="潘宪 · 市场专员。小红书双账号运营 · 品牌IP打造 · 线下活动全流程执行 · 国内外航司合作。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Caveat:wght@500;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#07060d; --bg1:#0e0b1a; --surface:#15111f; --surface2:#1c1730;
+  --ink:#ECE6FA; --ink-soft:#A79DCB; --line:rgba(255,255,255,.10);
+  --orange:#FF6A2B; --magenta:#FF2E97; --cyan:#27E6E6; --purple:#8A5BFF;
+  --yellow:#FFD23F; --lime:#A6FF2E; --blue:#3D8BFF; --pink:#FF7AA8;
+  --accent:var(--cyan);
+  --rot:-2deg;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans SC","Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--bg0); color:var(--ink);
+  overflow-x:hidden; line-height:1.6; -webkit-font-smoothing:antialiased; cursor:none;
+}
+@media (hover:none){ body{cursor:auto} }
+a{color:inherit;text-decoration:none}
+
+/* ===== fixed background stack ===== */
+#bg{position:fixed;inset:0;z-index:-5;
+  background:
+    radial-gradient(1200px 700px at 80% -10%, rgba(138,91,255,.22), transparent 60%),
+    radial-gradient(900px 600px at 0% 30%, rgba(255,46,151,.16), transparent 60%),
+    radial-gradient(900px 700px at 50% 120%, rgba(39,230,230,.16), transparent 60%),
+    var(--bg0);
+  transition:background .8s ease}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.4;z-index:-4;pointer-events:none;will-change:transform;mix-blend-mode:screen}
+#b1{width:42vw;height:42vw;background:var(--purple)}
+#b2{width:38vw;height:38vw;background:var(--magenta)}
+#b3{width:36vw;height:36vw;background:var(--cyan)}
+
+/* synthwave grid floor */
+#floor{position:fixed;left:-25%;right:-25%;bottom:-2vh;height:55vh;z-index:-4;pointer-events:none;
+  background:
+    linear-gradient(transparent 0%, rgba(138,91,255,.0) 40%),
+    repeating-linear-gradient(90deg, rgba(39,230,230,.35) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, rgba(255,46,151,.30) 0 1px, transparent 1px 64px);
+  transform:perspective(420px) rotateX(70deg) scale(1.4);
+  transform-origin:bottom center; mask-image:linear-gradient(transparent, #000 55%);
+  -webkit-mask-image:linear-gradient(transparent, #000 55%);
+  animation:floor 8s linear infinite}
+@keyframes floor{from{background-position:0 0,0 0,0 0}to{background-position:0 0,0 64px,0 64px}}
+
+/* starfield */
+#stars,#stars2{position:fixed;inset:0;z-index:-3;pointer-events:none}
+#stars{animation:rise 90s linear infinite}
+#stars2{animation:rise 140s linear infinite;opacity:.6}
+@keyframes rise{from{transform:translateY(0)}to{transform:translateY(-1000px)}}
+
+/* scanlines + vignette + flicker */
+#scan{position:fixed;inset:0;z-index:60;pointer-events:none;
+  background:repeating-linear-gradient(0deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.22) 2px 4px);
+  mix-blend-mode:multiply;opacity:.5;animation:flick 6s steps(60) infinite}
+@keyframes flick{0%,100%{opacity:.5}48%{opacity:.42}50%{opacity:.6}}
+#vignette{position:fixed;inset:0;z-index:59;pointer-events:none;
+  box-shadow:inset 0 0 240px 40px rgba(0,0,0,.75)}
+
+/* floating retro icons */
+.float{position:fixed;z-index:-2;pointer-events:none;will-change:transform;
+  filter:drop-shadow(0 0 10px rgba(39,230,230,.35))}
+.float.m{filter:drop-shadow(0 0 10px rgba(255,46,151,.4))}
+.float.p{filter:drop-shadow(0 0 10px rgba(138,91,255,.45))}
+.float.y{filter:drop-shadow(0 0 10px rgba(255,210,63,.4))}
+@keyframes drift1{0%,100%{transform:translate(0,0) rotate(-8deg)}50%{transform:translate(26px,-34px) rotate(6deg)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) rotate(7deg)}50%{transform:translate(-30px,-22px) rotate(-9deg)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) rotate(-4deg)}50%{transform:translate(18px,30px) rotate(8deg)}}
+
+/* ===== cursor / progress ===== */
+#cursor{position:fixed;top:0;left:0;width:12px;height:12px;border-radius:50%;
+  background:var(--accent);z-index:9999;pointer-events:none;transform:translate(-50%,-50%);
+  transition:width .2s,height .2s,background .3s,opacity .3s;mix-blend-mode:exclusion;
+  box-shadow:0 0 14px var(--accent)}
+#cursor.big{width:56px;height:56px;background:#fff}
+@media (hover:none){#cursor{display:none}}
+#progress{position:fixed;top:0;left:0;height:4px;width:0;z-index:9998;
+  background:linear-gradient(90deg,var(--magenta),var(--purple),var(--cyan),var(--lime));
+  box-shadow:0 0 12px var(--cyan)}
+
+/* ===== shared layout ===== */
+section{position:relative;z-index:1;padding:11vh 7vw;max-width:1400px;margin:0 auto}
+.eyebrow{font-family:"Press Start 2P",monospace;font-size:.6rem;letter-spacing:.12em;
+  color:var(--accent);text-shadow:0 0 10px var(--accent);display:inline-block;margin-bottom:1.2rem}
+.sec-title{font-family:"Noto Serif SC",serif;font-weight:900;line-height:.98;
+  font-size:clamp(2.4rem,7vw,5.5rem);position:relative;display:inline-block;
+  text-shadow:0 0 30px rgba(138,91,255,.25)}
+.sec-title .en{display:block;font-family:"Archivo Black",sans-serif;font-size:.32em;letter-spacing:.06em;
+  color:var(--ink-soft);text-transform:uppercase;opacity:.65;margin-top:.3rem}
+.sec-title.hglitch:hover{animation:shake .3s}
+@keyframes shake{25%{transform:translate(-2px,1px)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,0)}}
+
+/* ===== HERO ===== */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:14vh;max-width:1400px;margin:0 auto}
+.hero-kicker{font-family:"Press Start 2P",monospace;font-size:.62rem;letter-spacing:.1em;color:var(--cyan);
+  text-shadow:0 0 10px var(--cyan);margin-bottom:1.6rem;display:flex;gap:1rem;align-items:center}
+.hero-kicker::before{content:"";width:54px;height:2px;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.hero-name{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(5rem,26vw,22rem);
+  line-height:.82;letter-spacing:-.02em;position:relative;display:inline-block;color:transparent;
+  background:linear-gradient(100deg,var(--cyan),var(--purple) 40%,var(--magenta) 70%,var(--orange));
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;
+  animation:shine 7s linear infinite;filter:drop-shadow(0 0 24px rgba(138,91,255,.35))}
+@keyframes shine{to{background-position:200% center}}
+.hero-en{font-family:"Archivo Black",sans-serif;font-size:clamp(1.3rem,7vw,5.2rem);letter-spacing:.04em;
+  -webkit-text-stroke:1.5px var(--cyan);color:transparent;margin-top:.2rem;line-height:1;
+  text-shadow:0 0 18px rgba(39,230,230,.4)}
+.hero-role{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 1.1rem;margin-top:2rem}
+.hero-role .big{font-family:"Noto Serif SC",serif;font-weight:700;font-size:clamp(1.6rem,5vw,3rem)}
+.hero-role .tag{font-family:"Space Grotesk",sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.3rem .9rem;border:1.5px solid var(--accent);border-radius:999px;color:var(--accent);
+  box-shadow:0 0 14px -4px var(--accent)}
+.hero-tagline{max-width:640px;margin-top:2.2rem;font-size:clamp(1rem,1.6vw,1.18rem);font-weight:300;color:var(--ink-soft)}
+.hero-tagline b{font-weight:700;color:var(--ink);border-bottom:2px solid var(--yellow)}
+.scroll-hint{margin-top:3rem;font-family:"VT323",monospace;font-size:1.2rem;letter-spacing:.1em;color:var(--cyan);
+  display:flex;align-items:center;gap:.6rem;animation:bob 2s ease-in-out infinite}
+.scroll-hint .dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+@keyframes bob{0%,100%{opacity:.5;transform:translateY(0)}50%{opacity:1;transform:translateY(4px)}}
+
+/* ===== marquee ===== */
+.marquee{position:relative;z-index:1;overflow:hidden;white-space:nowrap;
+  border-top:2px solid var(--cyan);border-bottom:2px solid var(--magenta);
+  padding:.7rem 0;background:var(--surface2);margin:0;transform:rotate(-1.2deg) scale(1.04);
+  box-shadow:0 0 30px -8px var(--purple)}
+.marquee .track{display:inline-block;animation:scrollx 26s linear infinite;
+  font-family:"Archivo Black",sans-serif;font-size:1.5rem;letter-spacing:.02em;text-transform:uppercase}
+.marquee .track span{margin:0 1.3rem;color:var(--ink)}
+.marquee .track .o{color:var(--magenta)}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== ABOUT ===== */
+#about .quote{font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(1.5rem,3.4vw,2.7rem);
+  line-height:1.45;max-width:1000px;margin-top:1.5rem}
+#about .quote .hl{position:relative;white-space:nowrap;color:var(--cyan);text-shadow:0 0 16px rgba(39,230,230,.4)}
+#about .doodle-arrow{font-family:"Caveat",cursive;color:var(--lime);font-size:1.7rem;font-weight:700;
+  display:inline-block;transform:rotate(-8deg);text-shadow:0 0 12px rgba(166,255,46,.4)}
+
+/* ===== shared card (spotlight) ===== */
+.spot{position:relative;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;
+  will-change:transform;transition:transform .25s ease, box-shadow .25s ease;
+  transform-style:preserve-3d}
+.spot::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  clip-path:inset(0 round 18px);
+  background:radial-gradient(180px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.10), transparent 45%)}
+.spot:hover::after{opacity:1}
+
+/* ===== BorderGlow for numbers & experience cards ===== */
+.numcard.spot,.mod.spot{--edge-proximity:0;--cursor-angle:0deg;isolation:isolate}
+.numcard.spot::before,.mod.spot::before{content:"";position:absolute;inset:-2px;border-radius:20px;padding:2px;
+  background:conic-gradient(from calc(var(--cursor-angle,0deg)) at 50% 50%,
+    transparent 0deg,var(--cyan) 60deg,var(--magenta) 120deg,var(--purple) 180deg,
+    var(--magenta) 240deg,var(--cyan) 300deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;pointer-events:none;z-index:1;opacity:0;transition:opacity .4s ease}
+.numcard.spot:hover::before,.mod.spot:hover::before{opacity:1}
+.edge-light{position:absolute;inset:-4px;border-radius:22px;pointer-events:none;z-index:2;opacity:0;
+  transition:opacity .4s ease;box-shadow:0 0 18px 4px var(--cyan),0 0 40px 8px var(--magenta),0 0 60px 12px var(--purple)}
+.spot:hover .edge-light{opacity:calc(var(--edge-proximity)/150)}
+
+/* ===== Electric Border Cards (floating portfolio) ===== */
+.eb-card-wrapper{
+  position:fixed; z-index:50; pointer-events:auto;
+  border-radius:18px; transition:opacity .3s ease, transform .15s ease;
+  perspective:1000px; transform-style:preserve-3d;
+}
+.eb-card-wrapper .eb-inner{
+  position:relative; border-radius:18px; overflow:hidden;
+  background:var(--surface); padding:1.4rem 1.6rem;
+  min-width:220px; max-width:280px;
+  box-shadow:0 0 40px -12px rgba(39,230,230,.25);
+}
+.eb-card-wrapper .eb-inner h4{
+  font-family:"Noto Serif SC",serif; font-weight:900; font-size:1.1rem;
+  color:var(--ink); margin-bottom:.3rem;
+}
+.eb-card-wrapper .eb-inner .eb-tag{
+  font-family:"Space Grotesk",sans-serif; font-size:.62rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:.5rem;
+}
+.eb-card-wrapper .eb-inner p{
+  font-size:.82rem; color:var(--ink-soft); line-height:1.5;
+}
+.eb-card-wrapper .eb-glow-layer{
+  position:absolute; inset:-2px; border-radius:20px; pointer-events:none;
+  border:2px solid var(--accent); filter:blur(6px); opacity:.5;
+  animation:cardPulse 3s ease-in-out infinite;
+}
+@keyframes cardPulse{0%,100%{opacity:.3}50%{opacity:.7}}
+.eb-card-wrapper:hover .eb-glow-layer{opacity:.9;}
+.eb-card-wrapper:hover{transform:scale(1.05) !important;}
+@keyframes floatCard1{0%,100%{transform:translate(0,0) rotate(-2deg)}25%{transform:translate(40px,-25px) rotate(1deg)}50%{transform:translate(15px,-55px) rotate(-3deg)}75%{transform:translate(-30px,-30px) rotate(2deg)}}
+@keyframes floatCard2{0%,100%{transform:translate(0,0) rotate(3deg)}25%{transform:translate(-35px,-20px) rotate(-2deg)}50%{transform:translate(-10px,-50px) rotate(4deg)}75%{transform:translate(25px,-35px) rotate(-1deg)}}
+@keyframes floatCard3{0%,100%{transform:translate(0,0) rotate(-1deg)}25%{transform:translate(-20px,30px) rotate(2deg)}50%{transform:translate(-45px,10px) rotate(-3deg)}75%{transform:translate(-15px,-20px) rotate(1deg)}}
+@keyframes floatCard4{0%,100%{transform:translate(0,0) rotate(2deg)}25%{transform:translate(35px,20px) rotate(-3deg)}50%{transform:translate(10px,45px) rotate(1deg)}75%{transform:translate(-20px,15px) rotate(3deg)}}
+
+/* ===== NUMBERS ===== */
+#numbers .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.2rem;margin-top:3rem}
+.numcard{padding:1.6rem 1.5rem}
+.numcard .big{font-family:"Archivo Black",sans-serif;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1;
+  letter-spacing:-.02em;display:flex;align-items:baseline}
+.numcard .unit{font-size:.34em;margin-left:.2rem;font-family:"Noto Sans SC";font-weight:900}
+.numcard .lbl{margin-top:.6rem;font-weight:500;font-size:.95rem;color:var(--ink)}
+.numcard .en{font-family:"Space Grotesk";font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:.25rem}
+.numcard.c1{grid-column:span 4;color:var(--orange);border-color:rgba(255,106,43,.5);box-shadow:0 0 30px -12px var(--orange);--accent:var(--orange)}
+.numcard.c2{grid-column:span 3;color:var(--purple);border-color:rgba(138,91,255,.5);box-shadow:0 0 30px -12px var(--purple);--accent:var(--purple)}
+.numcard.c3{grid-column:span 5;color:var(--cyan);border-color:rgba(39,230,230,.5);box-shadow:0 0 30px -12px var(--cyan);--accent:var(--cyan)}
+.numcard.c4{grid-column:span 4;color:var(--pink);border-color:rgba(255,122,168,.5);box-shadow:0 0 30px -12px var(--pink);--accent:var(--pink)}
+.numcard.c5{grid-column:span 4;color:var(--blue);border-color:rgba(61,139,255,.5);box-shadow:0 0 30px -12px var(--blue);--accent:var(--blue)}
+.numcard.c6{grid-column:span 4;color:var(--magenta);border-color:rgba(255,46,151,.5);box-shadow:0 0 30px -12px var(--magenta);--accent:var(--magenta)}
+.numcard.c7{grid-column:span 5;color:var(--lime);border-color:rgba(166,255,46,.5);box-shadow:0 0 30px -12px var(--lime);--accent:var(--lime)}
+.numcard.c8{grid-column:span 7;color:var(--yellow);border-color:rgba(255,210,63,.5);box-shadow:0 0 36px -10px var(--yellow);--accent:var(--yellow);
+  background:linear-gradient(135deg,var(--surface2),var(--surface))}
+.numcard.c8 .lbl{color:var(--ink-soft)}
+
+/* ===== EXPERIENCE ===== */
+#exp .job-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 1.4rem;margin:2rem 0 1rem;
+  padding-bottom:1rem;border-bottom:2px dashed var(--purple)}
+#exp .co{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(1.8rem,4vw,3rem);color:var(--ink)}
+#exp .pos{font-weight:500;font-size:1.05rem;color:var(--ink-soft)}
+#exp .when{margin-left:auto;font-family:"VT323",monospace;font-size:1.2rem;background:var(--surface);
+  border:1.5px solid var(--cyan);color:var(--cyan);padding:.15rem .9rem;border-radius:999px;box-shadow:0 0 14px -4px var(--cyan)}
+.mods{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:1.5rem}
+.mod{padding:1.7rem}
+.mod .no{position:absolute;top:.6rem;right:1rem;font-family:"Press Start 2P",monospace;font-size:1.1rem;
+  color:var(--accent);opacity:.5}
+.mod h3{font-family:"Noto Serif SC",serif;font-weight:700;font-size:1.35rem;margin-bottom:.7rem;display:flex;gap:.5rem;align-items:center;color:var(--ink)}
+.mod h3 .en{font-family:"Space Grotesk";font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.mod ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.mod li{position:relative;padding-left:1.3rem;font-size:.94rem;color:var(--ink-soft)}
+.mod li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;background:var(--accent);
+  border-radius:2px;transform:rotate(45deg);box-shadow:0 0 8px var(--accent)}
+.mod li b{color:var(--ink);border-bottom:1.5px solid var(--yellow)}
+.mod.k1{border-color:rgba(39,230,230,.4);--accent:var(--cyan)}
+.mod.k2{border-color:rgba(255,46,151,.4);--accent:var(--magenta)}
+.mod.k3{border-color:rgba(166,255,46,.4);--accent:var(--lime)}
+.mod.k4{border-color:rgba(138,91,255,.4);--accent:var(--purple)}
+.mod.k5{border-color:rgba(255,210,63,.4);--accent:var(--yellow)}
+.mod.k6{border-color:rgba(255,106,43,.4);--accent:var(--orange)}
+
+/* ===== SKILLS ===== */
+#skills .cluster{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.6rem}
+.skrow{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem}
+.skrow .cat{font-family:"Noto Serif SC",serif;font-weight:900;font-size:1.3rem;margin-right:.6rem;min-width:140px;color:var(--ink)}
+.skrow .cat .en{display:block;font-family:"Space Grotesk";font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+.chip{font-weight:500;font-size:.9rem;padding:.45rem 1rem;border:1.5px solid var(--line);border-radius:999px;
+  background:var(--surface);transition:.25s;cursor:none;will-change:transform;color:var(--ink)}
+.chip:hover{background:var(--accent);color:#0a0712;transform:rotate(-3deg) scale(1.06);
+  box-shadow:0 0 18px -2px var(--accent);border-color:var(--accent)}
+
+/* ===== VALUES ===== */
+#values .vgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:2.5rem}
+.vcard{padding:2rem;border-radius:20px;position:relative;overflow:hidden;will-change:transform;color:var(--ink)}
+.vcard .vno{font-family:"Press Start 2P",monospace;font-size:1.8rem;opacity:.6;line-height:1}
+.vcard h3{font-family:"Noto Serif SC",serif;font-weight:900;font-size:1.7rem;margin:.6rem 0 .5rem}
+.vcard .en{font-family:"Space Grotesk";font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.vcard p{margin-top:.6rem;font-weight:300;font-size:.96rem;color:var(--ink-soft)}
+.vcard.v1{border-color:rgba(255,106,43,.5);box-shadow:0 0 40px -16px var(--orange)}
+.vcard.v1 .vno,.vcard.v1 h3{color:var(--orange)}
+.vcard.v2{border-color:rgba(138,91,255,.5);box-shadow:0 0 40px -16px var(--purple)}
+.vcard.v2 .vno,.vcard.v2 h3{color:var(--purple)}
+.vcard.v3{border-color:rgba(39,230,230,.5);box-shadow:0 0 40px -16px var(--cyan)}
+.vcard.v3 .vno,.vcard.v3 h3{color:var(--cyan)}
+.vcard.v4{border-color:rgba(255,46,151,.5);box-shadow:0 0 40px -16px var(--magenta)}
+.vcard.v4 .vno,.vcard.v4 h3{color:var(--magenta)}
+
+/* ===== CONTACT ===== */
+#contact{text-align:center;padding-bottom:6vh}
+#contact .big-cta{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(2.4rem,9vw,7rem);
+  line-height:.95;margin:1rem 0;color:var(--ink);text-shadow:0 0 40px rgba(255,46,151,.3)}
+#contact .big-cta .x{color:var(--magenta);text-shadow:0 0 24px var(--magenta)}
+.contact-rows{display:flex;flex-direction:column;gap:.8rem;max-width:520px;margin:2.5rem auto 0;text-align:left}
+.crow{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;transition:.25s}
+.crow:hover{transform:translateX(6px)}
+.crow .ic{font-size:1.3rem}
+.crow .k{font-family:"Space Grotesk";font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.crow .v{font-weight:700;font-size:1.05rem}
+.placeholder{display:inline-block;border:1.5px dashed var(--purple);border-radius:6px;padding:.05rem .6rem;
+  color:var(--purple);font-weight:700;letter-spacing:.05em;font-family:"VT323",monospace;font-size:1.1rem;
+  box-shadow:0 0 14px -6px var(--purple)}
+footer{position:relative;z-index:1;margin:5rem auto 0;border-top:2px solid var(--line);padding:2.5rem 7vw;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:"VT323",monospace;
+  font-size:1.1rem;letter-spacing:.04em;max-width:1400px;color:var(--ink-soft)}
+footer .sig{font-family:"Archivo Black";font-size:1.1rem;color:var(--ink)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(40px) rotate(var(--rot));transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:translateY(0) rotate(var(--rot))}
+
+/* nav */
+nav{position:fixed;top:0;right:0;z-index:9000;display:flex;gap:.2rem;padding:1.1rem 1.4rem;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:.78rem;letter-spacing:.04em;flex-wrap:wrap;justify-content:flex-end}
+nav a{position:relative;padding:.32rem .7rem;border-radius:999px;background:rgba(255,255,255,.06);transition:.25s;backdrop-filter:blur(4px)}
+nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rotate(-3deg);box-shadow:0 0 14px -2px var(--cyan)}
+.brandmark{position:fixed;top:1rem;left:1.4rem;z-index:9000;font-family:"Archivo Black",sans-serif;
+  font-size:1.1rem;letter-spacing:-.02em;color:var(--cyan);text-shadow:0 0 12px var(--cyan)}
+
+/* spark canvas */
+#spark{position:fixed;inset:0;z-index:9990;pointer-events:none}
+
+/* modal */
+#modalOverlay{position:fixed;inset:0;z-index:10000;background:rgba(7,6,13,.88);backdrop-filter:blur(12px);
+  display:none;align-items:center;justify-content:center;padding:3vh 3vw;animation:fadeIn .3s ease}
+#modalOverlay.open{display:flex}
+#modalBox{position:relative;background:var(--surface);border:1.5px solid var(--line);border-radius:24px;
+  max-width:900px;width:100%;max-height:92vh;overflow-y:auto;padding:2rem;box-shadow:0 0 60px -12px var(--accent);
+  animation:modalIn .3s cubic-bezier(.2,.7,.2,1)}
+#modalClose{position:absolute;top:1rem;right:1.2rem;font-size:1.5rem;color:var(--ink-soft);cursor:pointer;
+  transition:.2s;background:none;border:none;font-family:"Space Grotesk",sans-serif;z-index:2}
+#modalClose:hover{color:var(--cyan);transform:rotate(90deg)}
+#modalTitle{font-family:"Noto Serif SC",serif;font-weight:900;font-size:1.6rem;color:var(--ink);margin-bottom:.1rem}
+#modalTag{font-family:"Space Grotesk",sans-serif;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.2rem}
+#modalContent{display:flex;flex-direction:column;gap:1.2rem}
+.mg-section{border:1.5px solid var(--line);border-radius:16px;padding:1.2rem;background:rgba(255,255,255,.02)}
+.mg-section .mg-label{font-family:"Space Grotesk",sans-serif;font-size:.65rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.mg-section .mg-label::after{content:"";flex:1;height:1px;background:var(--line)}
+.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem}
+.mg-grid img{width:100%;border-radius:10px;border:1px solid var(--line);cursor:pointer;transition:.25s;display:block}
+.mg-grid img:hover{transform:scale(1.02);box-shadow:0 0 20px -6px var(--accent);border-color:var(--accent)}
+.mg-video{width:100%;border-radius:10px;border:1px solid var(--line);background:#000;aspect-ratio:16/9;object-fit:contain;cursor:pointer}
+.mg-video:focus{outline:2px solid var(--accent)}
+.mg-video::-webkit-media-controls{filter:brightness(.9)}
+.mg-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--cyan);font-weight:700;
+  font-size:.95rem;padding:.5rem 1rem;border:1.5px solid var(--cyan);border-radius:999px;transition:.25s;width:fit-content}
+.mg-link:hover{background:var(--cyan);color:#08070d;box-shadow:0 0 18px -2px var(--cyan)}
+.mg-empty{text-align:center;padding:1.5rem;color:var(--ink-soft);font-family:"VT323",monospace;font-size:.95rem;
+  border:1.5px dashed var(--line);border-radius:12px}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes modalIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* responsive */
+@media(max-width:860px){
+  nav{display:none}
+  section{padding:9vh 6vw}
+  #numbers .grid{grid-template-columns:repeat(2,1fr)}
+  .numcard{grid-column:span 1 !important}
+  .mods{grid-template-columns:1fr}
+  #values .vgrid{grid-template-columns:1fr}
+  .hero-name{font-size:30vw}
+  .marquee .track{font-size:1.2rem}
+  .float{transform:scale(.7)}
+  .eb-card-wrapper{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  .reveal{opacity:1;transform:none}
+  .blob,#floor,#stars,#stars2,.float{display:none}
+  body{cursor:auto}#cursor{display:none}
+  .hero-name{color:var(--cyan);-webkit-text-fill-color:var(--cyan);background:none;animation:none}
+  .eb-card-wrapper{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== fixed synthwave background ===== -->
+<div id="bg"></div>
+<div class="blob" id="b1"></div>
+<div class="blob" id="b2"></div>
+<div class="blob" id="b3"></div>
+<div id="floor"></div>
+<div id="stars"></div>
+<div id="stars2"></div>
+
+<!-- floating retro icons -->
+<svg class="float p" style="width:130px;top:16%;left:5%;animation:drift1 14s ease-in-out infinite" viewBox="0 0 130 110">
+  <defs>
+    <filter id="snow"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="n"><animate attributeName="seed" values="1;6;3;9;2;7" dur="0.5s" repeatCount="indefinite"/></feTurbulence><feColorMatrix in="n" type="saturate" values="0"/></filter>
+    <clipPath id="scr"><rect x="14" y="20" width="72" height="56" rx="5"/></clipPath>
+  </defs>
+  <rect x="6" y="12" width="92" height="72" rx="10" fill="#1c1730" stroke="#8A5BFF" stroke-width="2.5"/>
+  <g clip-path="url(#scr)"><rect x="14" y="20" width="72" height="56" fill="#0b0b0b"/><rect x="14" y="20" width="72" height="56" filter="url(#snow)" opacity="0.85"/></g>
+  <rect x="14" y="20" width="72" height="56" rx="5" fill="none" stroke="#27E6E6" stroke-width="2"/>
+  <circle cx="110" cy="30" r="6" fill="none" stroke="#FF2E97" stroke-width="2.5"/>
+  <circle cx="110" cy="50" r="6" fill="none" stroke="#FFD23F" stroke-width="2.5"/>
+  <rect x="104" y="64" width="14" height="6" rx="2" fill="#A6FF2E"/>
+  <line x1="40" y1="12" x2="24" y2="-6" stroke="#8A5BFF" stroke-width="2.5"/>
+  <line x1="64" y1="12" x2="80" y2="-6" stroke="#8A5BFF" stroke-width="2.5"/>
+  <rect x="20" y="84" width="8" height="12" fill="#8A5BFF"/><rect x="76" y="84" width="8" height="12" fill="#8A5BFF"/>
+</svg>
+<svg class="float m" style="width:108px;top:62%;left:8%;animation:drift2 16s ease-in-out infinite" viewBox="0 0 120 80">
+  <rect x="10" y="20" width="100" height="44" rx="22" fill="#1c1730" stroke="#FF2E97" stroke-width="2.5"/>
+  <line x1="34" y1="42" x2="34" y2="26" stroke="#27E6E6" stroke-width="4" stroke-linecap="round"/>
+  <line x1="26" y1="34" x2="42" y2="34" stroke="#27E6E6" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="82" cy="34" r="5" fill="#A6FF2E"/><circle cx="94" cy="44" r="5" fill="#FFD23F"/>
+  <circle cx="82" cy="48" r="3" fill="#8A5BFF"/>
+</svg>
+<svg class="float y" style="width:118px;top:20%;right:6%;animation:drift3 18s ease-in-out infinite" viewBox="0 0 120 80">
+  <rect x="8" y="10" width="104" height="60" rx="8" fill="#1c1730" stroke="#FFD23F" stroke-width="2.5"/>
+  <rect x="20" y="22" width="80" height="22" rx="4" fill="#0b0b0b" stroke="#27E6E6" stroke-width="1.5"/>
+  <circle cx="42" cy="33" r="7" fill="none" stroke="#FF2E97" stroke-width="2.5"/>
+  <circle cx="78" cy="33" r="7" fill="none" stroke="#FF2E97" stroke-width="2.5"/>
+  <rect x="34" y="54" width="52" height="8" rx="3" fill="#8A5BFF"/>
+</svg>
+<svg class="float" style="width:92px;top:70%;right:9%;animation:drift1 20s ease-in-out infinite" viewBox="0 0 90 90">
+  <path d="M8 8 H72 L82 18 V82 H8 Z" fill="#1c1730" stroke="#27E6E6" stroke-width="2.5"/>
+  <rect x="22" y="8" width="38" height="24" fill="#0b0b0b" stroke="#FF2E97" stroke-width="1.5"/>
+  <rect x="46" y="12" width="8" height="16" fill="#A6FF2E"/>
+  <rect x="20" y="46" width="50" height="30" rx="3" fill="#0b0b0b" stroke="#FFD23F" stroke-width="1.5"/>
+</svg>
+<svg class="float p" style="width:128px;bottom:8%;left:40%;animation:drift2 22s ease-in-out infinite" viewBox="0 0 140 80">
+  <rect x="8" y="14" width="124" height="56" rx="8" fill="#1c1730" stroke="#8A5BFF" stroke-width="2.5"/>
+  <rect x="14" y="8" width="40" height="8" rx="4" fill="#27E6E6"/>
+  <circle cx="38" cy="42" r="14" fill="none" stroke="#FF2E97" stroke-width="2.5"/><circle cx="38" cy="42" r="6" fill="#FF2E97"/>
+  <circle cx="102" cy="42" r="14" fill="none" stroke="#A6FF2E" stroke-width="2.5"/><circle cx="102" cy="42" r="6" fill="#A6FF2E"/>
+  <rect x="60" y="30" width="20" height="10" rx="2" fill="#0b0b0b" stroke="#FFD23F" stroke-width="1.5"/>
+</svg>
+<svg class="float" style="width:78px;top:44%;right:16%;animation:drift3 17s ease-in-out infinite" viewBox="0 0 80 110">
+  <rect x="12" y="6" width="56" height="98" rx="10" fill="#1c1730" stroke="#A6FF2E" stroke-width="2.5"/>
+  <rect x="20" y="16" width="40" height="34" rx="4" fill="#0b0b0b" stroke="#27E6E6" stroke-width="1.5"/>
+  <line x1="26" y1="72" x2="26" y2="62" stroke="#FF2E97" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="21" y1="67" x2="31" y2="67" stroke="#FF2E97" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="50" cy="64" r="4" fill="#FFD23F"/><circle cx="58" cy="72" r="4" fill="#8A5BFF"/>
+</svg>
+<svg class="float" style="width:96px;top:52%;left:60%;animation:drift3 16s ease-in-out infinite" viewBox="0 0 100 90">
+  <path d="M22 12 L28 30 L16 22 Z" fill="#FF7AA8" stroke="#FF2E97" stroke-width="2.5"/>
+  <path d="M78 12 L72 30 L84 22 Z" fill="#FF7AA8" stroke="#FF2E97" stroke-width="2.5"/>
+  <ellipse cx="50" cy="48" rx="34" ry="30" fill="#1c1730" stroke="#FF7AA8" stroke-width="2.5"/>
+  <circle cx="36" cy="42" r="4" fill="#27E6E6"/>
+  <circle cx="64" cy="42" r="4" fill="#27E6E6"/>
+  <ellipse cx="50" cy="56" rx="12" ry="8" fill="#0b0b0b" stroke="#FF7AA8" stroke-width="2"/>
+  <circle cx="44" cy="57" r="2" fill="#FF2E97"/>
+  <circle cx="56" cy="57" r="2" fill="#FF2E97"/>
+  <path d="M42 62 Q50 68 58 62" fill="none" stroke="#27E6E6" stroke-width="2" stroke-linecap="round"/>
+</svg>
+
+<!-- ===== overlays ===== -->
+<div id="scan"></div>
+<div id="vignette"></div>
+<div id="cursor"></div>
+<div id="progress"></div>
+<canvas id="spark"></canvas>
+
+<!-- ===== Floating Portfolio Cards ===== -->
+<div id="floatingCards"></div>
+
+<!-- ===== Modal ===== -->
+<div id="modalOverlay">
+  <div id="modalBox">
+    <button id="modalClose">&#10005;</button>
+    <div id="modalTag" style="color:var(--cyan)"></div>
+    <div id="modalTitle"></div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div class="brandmark">PX<span style="color:var(--magenta)">.</span></div>
+<nav>
+  <a href="#hero">封面</a><a href="#about">优势</a><a href="#numbers">数据</a>
+  <a href="#exp">经历</a><a href="#skills">技能</a><a href="#values">评价</a><a href="#contact">联系</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="hero-kicker">MARKETING SPECIALIST</div>
+  <div class="hero-name">潘宪</div>
+  <div class="hero-en">PAN&nbsp;XIAN</div>
+  <div class="hero-role">
+    <span class="big">市场专员</span>
+    <span class="tag">新媒体运营</span><span class="tag">品牌IP</span><span class="tag">活动执行</span><span class="tag">媒体商务</span>
+  </div>
+  <p class="hero-tagline">具备<b>新媒体运营</b>、<b>品牌IP打造</b>、<b>线下活动全流程执行</b>、<b>媒体商务对接</b>复合能力的市场专员。精通从内容策划 → 视觉设计 → 活动执行 → 活动统筹策划的市场全流程，企业差旅行业内容，具备线下活动出差执行经验。</p>
+  <div class="scroll-hint"><span class="dot"></span>SCROLL ↓ 向下滑动</div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="track">
+    <span>新媒体运营</span><span class="o">◆</span><span>品牌IP打造</span><span class="o">◆</span><span>线下活动执行</span><span class="o">◆</span><span>媒体商务对接</span><span class="o">◆</span><span>AI赋能内容</span><span class="o">◆</span>
+    <span>新媒体运营</span><span class="o">◆</span><span>品牌IP打造</span><span class="o">◆</span><span>线下活动执行</span><span class="o">◆</span><span>媒体商务对接</span><span class="o">◆</span><span>AI赋能内容</span><span class="o">◆</span>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <span class="eyebrow">ABOUT · 个人优势</span>
+  <h2 class="sec-title hglitch">复合能力<span class="en">The Full Stack Marketer</span></h2>
+  <p class="quote reveal" style="--rot:-1deg">
+    具备<span class="hl">新媒体运营</span>、<span class="hl">品牌IP打造</span>、<span class="hl">线下活动全流程执行</span>、<span class="hl">媒体商务对接</span>复合能力的市场专员。
+    擅长<span class="hl">小红书 B端/C端双账号</span>精细化运营，有<span class="hl">国内外航司沙龙活动</span>策划与日常合作沟通经验，具备线下活动出差执行经验。
+    以 <b style="color:var(--yellow)">AI工具</b> 赋能内容产出效率。
+  </p>
+</section>
+
+<!-- ============ NUMBERS ============ -->
+<section id="numbers">
+  <span class="eyebrow">KEY RESULTS · 核心数据亮点</span>
+  <h2 class="sec-title hglitch">用数据说话<span class="en">Numbers That Talk</span></h2>
+  <div class="grid">
+    <div class="numcard spot c1 reveal" style="--rot:-2deg"><div class="big"><span class="count" data-to="38">0</span><span class="unit">条</span></div><div class="lbl">零付费投流 · 全年行业客户线索</div><div class="en">Zero-spend leads / year</div></div>
+    <div class="numcard spot c2 reveal" style="--rot:2deg"><div class="big">+<span class="count" data-to="37.5" data-dec="1">0</span><span class="unit">%</span></div><div class="lbl">Q4 线索环比增长</div><div class="en">QoQ growth</div></div>
+    <div class="numcard spot c3 reveal" style="--rot:-1deg"><div class="big"><span class="count" data-to="7">0</span><span class="unit">场</span></div><div class="lbl">独立统筹大型线下活动全流程</div><div class="en">Large offline events owned end-to-end</div></div>
+    <div class="numcard spot c4 reveal" style="--rot:1.5deg"><div class="big"><span class="count" data-to="25">0</span><span class="unit">条</span></div><div class="lbl">2026 Q1 双账号新增线索</div><div class="en">New leads · 2026 Q1</div></div>
+    <div class="numcard spot c5 reveal" style="--rot:-2deg"><div class="big"><span class="count" data-to="140">0</span><span class="unit">次</span></div><div class="lbl">小红书私信互动累计</div><div class="en">DM interactions</div></div>
+    <div class="numcard spot c6 reveal" style="--rot:2deg"><div class="big">+<span class="count" data-to="67">0</span><span class="unit">%</span></div><div class="lbl">Q4 视频物料交付量环比提升</div><div class="en">Video delivery uplift</div></div>
+    <div class="numcard spot c7 reveal" style="--rot:-1deg"><div class="big"><span class="count" data-to="100">0</span><span class="unit">+套</span></div><div class="lbl">设计素材模板库 · AI赋能产出</div><div class="en">Design template library</div></div>
+    <div class="numcard spot c8 reveal" style="--rot:1deg"><div class="big"><span data-fuzzy="小美" data-fuzzy-color="#FFD23F" data-fuzzy-size="2.6rem" data-fuzzy-dir="horizontal" data-fuzzy-glitch="true" data-fuzzy-glitch-int="2000" data-fuzzy-glitch-dur="150" data-fuzzy-range="20" data-fuzzy-base="0.2" data-fuzzy-hover="0.5">小美</span> IP</div><div class="lbl">完整搭建 IP 矩阵：3D建模 · 表情包 · 产品动画，覆盖全公司内外部品牌传播</div><div class="en">Brand mascot system</div></div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="exp">
+  <span class="eyebrow">EXPERIENCE · 工作经历</span>
+  <h2 class="sec-title hglitch">实战履历<span class="en">On the Ground</span></h2>
+  <div class="job-head reveal" style="--rot:0deg">
+    <span class="co">美亚科技</span><span class="pos">市场中心专员</span><span class="when">2025.05 — 至今</span>
+  </div>
+  <div class="mods">
+    <div class="mod spot k1 reveal" style="--rot:-1.2deg"><span class="no">01</span>
+      <h3>新媒体运营 <span class="en">RED · Dual Account</span></h3>
+      <ul>
+        <li>负责<b>美亚联盟荟（B2B机票分销）</b>、<b>美亚商旅（企业差旅）</b>双账号全栈运营，构建 C端出行攻略 + B端差旅解决方案双内容体系</li>
+        <li><b>零付费</b>全年自然流量沉淀有效客户线索，各季度持续增长</li>
+        <li>熟悉平台规则，建立内容合规审核机制，规避限流与违规风险；数据复盘，验证干货攻略类内容长效引流价值</li>
+      </ul>
+    </div>
+    <div class="mod spot k2 reveal" style="--rot:1.4deg"><span class="no">02</span>
+      <h3>品牌IP打造与视觉设计 <span class="en">Brand IP · Design</span></h3>
+      <ul>
+        <li>独立完成企业 IP「<b>小美</b>」完整体系搭建：3D毛绒公仔建模、数字3D形象、系列微信表情包、集团产品展示动画，统一视觉形象</li>
+        <li>输出全年节日视频海报、企业文化连环画+宣传Banner、日常设计；应用于各大峰会、航司沙龙活动交流会、年会等多场重要场合</li>
+        <li>产出宣传视觉物料，涵盖航司合作海报、线上线下宣传物料、集团PPT等</li>
+      </ul>
+    </div>
+    <div class="mod spot k3 reveal" style="--rot:1deg"><span class="no">03</span>
+      <h3>线下活动策划与执行 <span class="en">Events</span></h3>
+      <ul>
+        <li>统筹参与行业航旅节、航司交流会、集团各地年会、大型线下活动，覆盖场地勘测 → 流程策划 → 物料设计 → 现场拍摄 → 后期宣传全链路</li>
+        <li>完成航司/客户参访跟拍、航司定制宣传视频、产品预热短视频制作</li>
+        <li>大型活动完成物料筹备，建立活动品牌闭环管理（线上宣传、媒体二次传播）</li>
+      </ul>
+    </div>
+    <div class="mod spot k4 reveal" style="--rot:-1.5deg"><span class="no">04</span>
+      <h3>国内外航司活动与日常合作沟通 <span class="en">Airline Partners</span></h3>
+      <ul>
+        <li>参与策划国内外主要航司线下沙龙、交流会及联合推广活动，协调活动流程设计、现场执行与后期宣传传播，有效促进公司与航司伙伴的战略协同关系</li>
+        <li>承接航司日常合作需求对接，包括联合营销方案制定、权益资源置换协商、活动物料联合制作等，维护与多家国内外航司的长期稳定合作关系</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <span class="eyebrow">SKILLS · 专业技能</span>
+  <h2 class="sec-title hglitch">工具箱<span class="en">The Toolkit</span></h2>
+  <div class="cluster">
+    <div class="skrow reveal" style="--rot:0deg"><span class="cat">新媒体运营<span class="en">New Media</span></span>
+      <span class="chip">小红书B/C端双账号</span><span class="chip">内容选题策划</span><span class="chip">图文短视频制作</span><span class="chip">私信线索转化</span><span class="chip">平台规则风控</span><span class="chip">数据复盘</span></div>
+    <div class="skrow reveal" style="--rot:0deg"><span class="cat">视觉设计<span class="en">Visual</span></span>
+      <span class="chip">海报/Banner</span><span class="chip">IP形象/表情包</span><span class="chip">PPT动画</span><span class="chip">活动全套物料</span><span class="chip">品牌VI落地跟进</span></div>
+    <div class="skrow reveal" style="--rot:0deg"><span class="cat">视频制作<span class="en">Video</span></span>
+      <span class="chip">短视频拍摄剪辑</span><span class="chip">3D建模动画</span><span class="chip">AI辅助创作</span><span class="chip">产品宣传视频</span></div>
+    <div class="skrow reveal" style="--rot:0deg"><span class="cat">活动执行<span class="en">Events</span></span>
+      <span class="chip">线下活动全流程统筹</span><span class="chip">航司沙龙策划</span><span class="chip">场地对接</span><span class="chip">现场拍摄</span><span class="chip">峰会物料</span><span class="chip">活动后期品牌传播</span></div>
+    <div class="skrow reveal" style="--rot:0deg"><span class="cat">工具软件<span class="en">Software</span></span>
+      <span class="chip">Adobe工具</span><span class="chip">codex</span><span class="chip">blender</span><span class="chip">gemini</span></div>
+  </div>
+</section>
+
+<!-- ============ VALUES ============ -->
+<section id="values">
+  <span class="eyebrow">WHY ME · 自我评价</span>
+  <h2 class="sec-title hglitch">我的底色<span class="en">What Drives Me</span></h2>
+  <div class="vgrid">
+    <div class="vcard spot v1 reveal" style="--rot:-1.5deg"><div class="vno">01</div><h3>市场全栈能力</h3><span class="en">Full-Stack Marketing</span><p>兼具新媒体运营、品牌设计、活动执行三大核心能力，能独立承接市场全模块工作，具备从 0 到 1 落地经验。</p></div>
+    <div class="vcard spot v2 reveal" style="--rot:1.5deg"><div class="vno">02</div><h3>数据驱动思维</h3><span class="en">Data-Driven</span><p>善用平台数据复盘优化内容策略，以结果为导向，持续迭代运营打法。</p></div>
+    <div class="vcard spot v3 reveal" style="--rot:1.2deg"><div class="vno">03</div><h3>执行力强 · 响应高效</h3><span class="en">Reliable Delivery</span><p>拥有标准化项目管理意识，细节把控严谨，大型活动零重大延期交付记录。</p></div>
+    <div class="vcard spot v4 reveal" style="--rot:-1.2deg"><div class="vno">04</div><h3>持续学习能力</h3><span class="en">Always Learning</span><p>主动拥抱 AI、3D 等新型内容工具，融入日常工作，持续提升产出效率与质量。</p></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <span class="eyebrow">GET IN TOUCH · 联系我</span>
+  <div class="big-cta">一起做点<br>有<span class="x"><span data-fuzzy="声量" data-fuzzy-color="#FF2E97" data-fuzzy-size="clamp(2rem, 6vw, 4rem)" data-fuzzy-dir="vertical" data-fuzzy-glitch="true" data-fuzzy-glitch-int="4000" data-fuzzy-glitch-dur="250" data-fuzzy-range="25" data-fuzzy-base="0.1" data-fuzzy-hover="0.4">声量</span></span>的事 ◆</div>
+  <div class="contact-rows">
+    <div class="crow spot"><span class="ic">📞</span><div><div class="k">Phone · 电话</div><div class="v"><span style="font-family:VT323,monospace;font-size:1.1rem;color:var(--cyan)">13829323835</span></div></div></div>
+    <div class="crow spot"><span class="ic">✉️</span><div><div class="k">Email · 邮箱</div><div class="v"><span style="font-family:VT323,monospace;font-size:1.1rem;color:var(--cyan)">1164532642@qq.COM</span></div></div></div>
+    <div class="crow spot"><span class="ic">💬</span><div><div class="k">WeChat · 微信</div><div class="v"><span class="placeholder" title="请替换为真实微信号">待填写 / TODO</span></div></div></div>
+  </div>
+</section>
+
+<footer>
+  <span class="sig">PAN XIAN — 潘宪</span>
+  <span>市场专员 · 新媒体 / 品牌IP / 活动 / 商务</span>
+  <span>© 2026 · SYNTHWAVE PORTFOLIO</span>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var hover  = window.matchMedia('(hover:hover)').matches;
+
+  /* ---- starfield generation ---- */
+  function makeStars(el,count,size){
+    var s=[]; for(var i=0;i<count;i++){ s.push((Math.random()*2000)+'px '+(Math.random()*2000)+'px rgba(255,255,255,'+(0.4+Math.random()*0.6).toFixed(2)+')'); }
+    var d=document.createElement('div');
+    d.style.cssText='position:absolute;width:'+size+'px;height:'+size+'px;border-radius:50%;background:#fff;box-shadow:'+s.join(',');
+    el.appendChild(d);
+    var d2=d.cloneNode(); d2.style.top='2000px'; el.appendChild(d2);
+  }
+  if(!reduce){ makeStars(document.getElementById('stars'),90,2); makeStars(document.getElementById('stars2'),60,1); }
+
+  /* ---- custom cursor ---- */
+  var cursor=document.getElementById('cursor');
+  if(!reduce && hover){
+    var cx=innerWidth/2, cy=innerHeight/2, tx=cx, ty=cy, running=false;
+    function loop(){
+      cx+=(tx-cx)*.2; cy+=(ty-cy)*.2;
+      cursor.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';
+      if(Math.abs(tx-cx)>0.3||Math.abs(ty-cy)>0.3){ requestAnimationFrame(loop); } else { running=false; }
+    }
+    window.addEventListener('mousemove',function(e){ tx=e.clientX; ty=e.clientY; if(!running){running=true;requestAnimationFrame(loop);} });
+    document.addEventListener('mouseover',function(e){
+      if(e.target.closest('a,.chip,.numcard,.mod,.vcard,.crow,.enter-btn,nav a,.eb-card-wrapper')) cursor.classList.add('big');
+      else cursor.classList.remove('big');
+    });
+  } else { cursor.style.display='none'; }
+
+  /* ---- click spark ---- */
+  var sc=document.getElementById('spark'), sx=sc.getContext('2d'), sparks=[];
+  function sizeSpark(){ sc.width=innerWidth; sc.height=innerHeight; }
+  sizeSpark(); window.addEventListener('resize',sizeSpark);
+  var colors=['#27E6E6','#FF2E97','#8A5BFF','#FFD23F','#A6FF2E'];
+  window.addEventListener('click',function(e){
+    if(reduce) return;
+    var n=10;
+    for(var i=0;i<n;i++){
+      var a=(Math.PI*2*i)/n + Math.random()*0.3;
+      sparks.push({x:e.clientX,y:e.clientY,a:a,v:5+Math.random()*5,life:1,c:colors[Math.floor(Math.random()*colors.length)]});
+    }
+    if(!sparkRunning){ sparkRunning=true; requestAnimationFrame(drawSpark); }
+  });
+  var sparkRunning=false;
+  function drawSpark(){
+    sx.clearRect(0,0,sc.width,sc.height);
+    for(var i=sparks.length-1;i>=0;i--){
+      var s=sparks[i]; s.life-=0.04; if(s.life<=0){ sparks.splice(i,1); continue; }
+      var d=(1-s.life)*s.v*6;
+      var x1=s.x+Math.cos(s.a)*d, y1=s.y+Math.sin(s.a)*d;
+      var x2=s.x+Math.cos(s.a)*(d+12), y2=s.y+Math.sin(s.a)*(d+12);
+      sx.strokeStyle=s.c; sx.globalAlpha=s.life; sx.lineWidth=2; sx.lineCap='round';
+      sx.beginPath(); sx.moveTo(x1,y1); sx.lineTo(x2,y2); sx.stroke();
+    }
+    sx.globalAlpha=1;
+    if(sparks.length){ requestAnimationFrame(drawSpark); } else { sparkRunning=false; sx.clearRect(0,0,sc.width,sc.height); }
+  }
+
+  /* ---- scroll bg + blobs + progress ---- */
+  var prog=document.getElementById('progress');
+  var blobs=[
+    {el:document.getElementById('b1'),sx:-8,sy:0, ax:70, ay:40},
+    {el:document.getElementById('b2'),sx:65,sy:-5,ax:-55,ay:50},
+    {el:document.getElementById('b3'),sx:15,sy:55,ax:60, ay:-40}
+  ];
+  var hues=[265,290,315,200,170,140,40];
+  var ticking=false;
+  function doScrollWork(){
+    var h=document.documentElement.scrollHeight-innerHeight;
+    var p=Math.min(1,Math.max(0,scrollY/(h||1)));
+    prog.style.width=(p*100)+'%';
+    if(!reduce){
+      blobs.forEach(function(b,i){
+        var y=b.sy+Math.sin(p*Math.PI*2+i)*b.ay - p*50;
+        var x=b.sx+Math.cos(p*Math.PI*2+i)*b.ax*0.4;
+        b.el.style.transform='translate('+x+'vw,'+y+'vh)';
+      });
+      var hue=hues[Math.min(hues.length-1,Math.floor(p*hues.length))];
+      bg.style.filter='hue-rotate('+Math.round((p*60)-30)+'deg)';
+    }
+    ticking=false;
+  }
+  function onScroll(){
+    if(ticking) return; ticking=true;
+    var rafFired=false;
+    requestAnimationFrame(function(){ rafFired=true; doScrollWork(); });
+    setTimeout(function(){ if(!rafFired){ doScrollWork(); } }, 60);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* ---- floating icon parallax ---- */
+  var floats=[].slice.call(document.querySelectorAll('.float'));
+  if(!reduce && hover){
+    window.addEventListener('mousemove',function(e){
+      var mx=(e.clientX/innerWidth-.5), my=(e.clientY/innerHeight-.5);
+      floats.forEach(function(el,i){ var f=(i%3+1)*8; el.style.translate=(mx*f)+'px '+(my*f)+'px'; });
+    });
+  }
+
+  /* ---- reveal + counters ---- */
+  function runCount(el){
+    if(el.dataset.done) return; el.dataset.done=1;
+    var to=parseFloat(el.getAttribute('data-to')), dec=parseInt(el.getAttribute('data-dec')||'0',10), dur=1400;
+    if(reduce){ el.textContent=to.toFixed(dec); return; }
+    var start=performance.now(), rafFired=false;
+    function step(now){ rafFired=true; update(now); }
+    function update(now){ var t=Math.min(1,(now-start)/dur), e=1-Math.pow(1-t,3);
+      el.textContent=(to*e).toFixed(dec); if(t<1) requestAnimationFrame(step); else el.textContent=to.toFixed(dec); }
+    requestAnimationFrame(step);
+    setTimeout(function(){
+      if(!rafFired){ var iv=setInterval(function(){ var now=performance.now(); update(now); if(now-start>=dur){ clearInterval(iv); } }, 16); }
+    }, 100);
+    setTimeout(function(){ el.textContent=to.toFixed(dec); }, dur+200);
+  }
+  var showed=false;
+  function showAll(){
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+    document.querySelectorAll('.count').forEach(runCount);
+  }
+  function tryShow(){
+    if(showed) return;
+    showed=true; setTimeout(showAll, 200);
+  }
+  window.addEventListener('scroll',tryShow,{passive:true});
+  setTimeout(tryShow, 500);
+
+  /* ---- spotlight + tilt cards + BorderGlow ---- */
+  if(!reduce && hover){
+    document.querySelectorAll('.spot').forEach(function(card){
+      card.addEventListener('mousemove',function(e){
+        var r=card.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+        card.style.setProperty('--mx',(px*100)+'%'); card.style.setProperty('--my',(py*100)+'%');
+        /* BorderGlow: edge-proximity (0-100) & cursor-angle */
+        var cx=px-.5, cy=py-.5;
+        var dist=Math.sqrt(cx*cx+cy*cy)/.5;
+        card.style.setProperty('--edge-proximity',Math.min(dist*100,100));
+        card.style.setProperty('--cursor-angle',Math.atan2(cy,cx)*180/Math.PI+'deg');
+        var rx=(py-.5)*-10, ry=(px-.5)*10;
+        card.style.transform='perspective(800px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px) rotate(0deg)';
+      });
+      card.addEventListener('mouseleave',function(){ card.style.transform=''; card.style.setProperty('--edge-proximity','0'); });
+    });
+  }
+
+  /* ---- inject edge-light spans for BorderGlow ---- */
+  document.querySelectorAll('.numcard.spot,.mod.spot').forEach(function(card){
+    if(!card.querySelector('.edge-light')){
+      var el=document.createElement('span');
+      el.className='edge-light';
+      /* use card's accent color for the glow */
+      var accent=getComputedStyle(card).getPropertyValue('--accent').trim();
+      if(accent&&accent!=''){
+        el.style.boxShadow='0 0 18px 4px '+accent+',0 0 40px 8px '+accent;
+      }
+      card.appendChild(el);
+    }
+  });
+
+  /* ---- nav highlight ---- */
+  var navlinks=[].slice.call(document.querySelectorAll('nav a'));
+  var secs=navlinks.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  var navIO=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){
+      navlinks.forEach(function(a){a.style.background='';a.style.color='';});
+      var idx=secs.indexOf(e.target);
+      if(idx>-1){ navlinks[idx].style.background='var(--cyan)'; navlinks[idx].style.color='#08070d'; }
+    }});
+  },{threshold:.4});
+  secs.forEach(function(s){if(s)navIO.observe(s)});
+
+  /* ================================================================
+     Electric Border — vanilla JS canvas implementation
+     Adapted from React Bits <ElectricBorder />
+     Credit: @BalintFerenczy on X / codepen.io/BalintFerenczy/pen/KwdoyEN
+     ================================================================ */
+  function createElectricBorder(container, opts){
+    opts = opts || {};
+    var color = opts.color || '#7df9ff';
+    var speed = opts.speed || 1;
+    var chaos = opts.chaos || 0.12;
+    var borderRadius = opts.borderRadius || 18;
+    var thickness = opts.thickness || 2;
+
+    var canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:absolute;top:0;left:0;pointer-events:none;z-index:2;display:block;';
+    container.appendChild(canvas);
+
+    var ctx = canvas.getContext('2d');
+    var animRef = null, timeRef = 0, lastFrameTime = 0;
+
+    function rand(x){ return (Math.sin(x*12.9898)*43758.5453)%1; }
+    function noise2D(x,y){
+      var i=Math.floor(x),j=Math.floor(y),fx=x-i,fy=y-j;
+      var a=rand(i+j*57),b=rand(i+1+j*57),c=rand(i+(j+1)*57),d=rand(i+1+(j+1)*57);
+      var ux=fx*fx*(3-2*fx),uy=fy*fy*(3-2*fy);
+      return a*(1-ux)*(1-uy)+b*ux*(1-uy)+c*(1-ux)*uy+d*ux*uy;
+    }
+    function octavedNoise(x,octaves,lacunarity,gain,baseAmp,baseFreq,time,seed,flatness){
+      var y=0,amp=baseAmp,freq=baseFreq;
+      for(var i=0;i<octaves;i++){
+        var a=amp; if(i===0) a*=flatness;
+        y+=a*noise2D(freq*x+seed*100,time*freq*.3);
+        freq*=lacunarity; amp*=gain;
+      }
+      return y;
+    }
+    function cornerPoint(cx,cy,r,startAngle,arcLen,t){
+      var a=startAngle+t*arcLen;
+      return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)};
+    }
+    function roundedRectPoint(t,l,tp,w,h,r){
+      var sw=w-2*r, sh=h-2*r, ca=(Math.PI*r)/2, perim=2*sw+2*sh+4*ca, d=t*perim, acc=0;
+      if(d<=acc+sw) return {x:l+r+(d-acc)/sw*sw,y:tp}; acc+=sw;
+      if(d<=acc+ca){ var cp=cornerPoint(l+w-r,tp+r,r,-Math.PI/2,Math.PI/2,(d-acc+ca)/ca); return cp; } acc+=ca;
+      if(d<=acc+sh) return {x:l+w,y:tp+r+(d-acc)/sh*sh}; acc+=sh;
+      if(d<=acc+ca){ var cp2=cornerPoint(l+w-r,tp+h-r,r,0,Math.PI/2,(d-acc+ca)/ca); return cp2; } acc+=ca;
+      if(d<=acc+sw) return {x:l+w-r-(d-acc)/sw*sw,y:tp+h}; acc+=sw;
+      if(d<=acc+ca){ var cp3=cornerPoint(l+r,tp+h-r,r,Math.PI/2,Math.PI/2,(d-acc+ca)/ca); return cp3; } acc+=ca;
+      if(d<=acc+sh) return {x:l,y:tp+h-r-(d-acc)/sh*sh}; acc+=sh;
+      var cp4=cornerPoint(l+r,tp+r,r,Math.PI,Math.PI/2,(d-acc+ca)/ca); return cp4;
+    }
+
+    var octaves=10, lac=1.6, gn=0.7, freq=10, flatness=0, displacement=40, borderOffset=2;
+
+    function updateSize(){
+      var rect=container.getBoundingClientRect();
+      var w=rect.width+borderOffset*2, h=rect.height+borderOffset*2;
+      var dpr=Math.min(window.devicePixelRatio||1,2);
+      canvas.width=w*dpr; canvas.height=h*dpr;
+      canvas.style.width=w+'px'; canvas.style.height=h+'px';
+      ctx.setTransform(1,0,0,1,0,0); ctx.scale(dpr,dpr);
+      return {w:w,h:h};
+    }
+    var dim=updateSize(), lastDpr=Math.min(window.devicePixelRatio||1,2);
+
+    function draw(now){
+      var dpr=Math.min(window.devicePixelRatio||1,2);
+      if(dpr!==lastDpr){ lastDpr=dpr; dim=updateSize(); }
+      var dt=(now-lastFrameTime)/1000; timeRef+=dt*speed; lastFrameTime=now;
+
+      ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,canvas.width,canvas.height); ctx.scale(dpr,dpr);
+      ctx.strokeStyle=color; ctx.lineWidth=thickness; ctx.lineCap='round'; ctx.lineJoin='round';
+
+      var l=borderOffset, tp=borderOffset, bw=dim.w-2*borderOffset, bh=dim.h-2*borderOffset;
+      var maxR=Math.min(bw,bh)/2, rad=Math.min(borderRadius,maxR);
+      var approxPerim=2*(bw+bh)+2*Math.PI*rad, scount=Math.floor(approxPerim/2);
+
+      ctx.beginPath();
+      for(var i=0;i<=scount;i++){
+        var progress=i/scount;
+        var pt=roundedRectPoint(progress,l,tp,bw,bh,rad);
+        var xn=octavedNoise(progress*8,octaves,lac,gn,chaos,freq,timeRef,0,flatness);
+        var yn=octavedNoise(progress*8,octaves,lac,gn,chaos,freq,timeRef,1,flatness);
+        var dx=pt.x+xn*displacement, dy=pt.y+yn*displacement;
+        if(i===0) ctx.moveTo(dx,dy); else ctx.lineTo(dx,dy);
+      }
+      ctx.closePath(); ctx.stroke();
+      animRef=requestAnimationFrame(draw);
+    }
+
+    var ro=new ResizeObserver(function(){ dim=updateSize(); });
+    ro.observe(container);
+    animRef=requestAnimationFrame(draw);
+    // Draw initial frame immediately (for environments where rAF is throttled)
+    // Use a one-shot draw that doesn't spawn its own rAF loop
+    (function(){
+      var dpr=Math.min(window.devicePixelRatio||1,2); if(dpr!==lastDpr){ lastDpr=dpr; dim=updateSize(); }
+      ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,canvas.width,canvas.height); ctx.scale(dpr,dpr);
+      ctx.strokeStyle=color; ctx.lineWidth=thickness; ctx.lineCap='round'; ctx.lineJoin='round';
+      var l=borderOffset, tp=borderOffset, bw=dim.w-2*borderOffset, bh=dim.h-2*borderOffset;
+      var maxR=Math.min(bw,bh)/2, rad=Math.min(borderRadius,maxR);
+      var approxPerim=2*(bw+bh)+2*Math.PI*rad, scount=Math.floor(approxPerim/2);
+      ctx.beginPath();
+      for(var i=0;i<=scount;i++){
+        var progress=i/scount;
+        var pt=roundedRectPoint(progress,l,tp,bw,bh,rad);
+        var xn=octavedNoise(progress*8,octaves,lac,gn,chaos,freq,0,0,flatness);
+        var yn=octavedNoise(progress*8,octaves,lac,gn,chaos,freq,0,1,flatness);
+        var dx=pt.x+xn*displacement, dy=pt.y+yn*displacement;
+        if(i===0) ctx.moveTo(dx,dy); else ctx.lineTo(dx,dy);
+      }
+      ctx.closePath(); ctx.stroke();
+    })();
+
+    return function destroy(){
+      if(animRef) cancelAnimationFrame(animRef);
+      ro.disconnect();
+      if(canvas.parentNode) canvas.parentNode.removeChild(canvas);
+    };
+  }
+
+  /* ---- Floating Portfolio Cards with Electric Border + Modal ---- */
+  (function initFloatingCards(){
+    if(reduce) return;
+    var fcContainer=document.getElementById('floatingCards');
+    var overlay=document.getElementById('modalOverlay');
+    var closeBtn=document.getElementById('modalClose');
+    var mTitle=document.getElementById('modalTitle');
+    var mTag=document.getElementById('modalTag');
+    var mContent=document.getElementById('modalContent');
+
+    function openModal(card){
+      mTitle.textContent=card.title;
+      mTag.textContent=card.tag;
+      mTag.style.color=card.color;
+      mContent.innerHTML='';
+
+      // images section
+      if(card.images && card.images.length){
+        var sec=document.createElement('div');
+        sec.className='mg-section';
+        sec.innerHTML='<div class="mg-label" style="color:'+card.color+'">&#128247; 图片</div><div class="mg-grid"></div>';
+        var grid=sec.querySelector('.mg-grid');
+        card.images.forEach(function(src){
+          var img=document.createElement('img');
+          img.loading='lazy';
+          img.src=src;
+          img.addEventListener('click',function(){ window.open(src,'_blank'); });
+          grid.appendChild(img);
+        });
+        mContent.appendChild(sec);
+      }
+
+      // videos section
+      if(card.videos && card.videos.length){
+        var sec2=document.createElement('div');
+        sec2.className='mg-section';
+        sec2.innerHTML='<div class="mg-label" style="color:'+card.color+'">&#127916; 视频</div><div class="mg-grid"></div>';
+        var grid2=sec2.querySelector('.mg-grid');
+        card.videos.forEach(function(v){
+          var vid=document.createElement('video');
+          vid.className='mg-video';
+          vid.controls=true;
+          vid.preload='metadata';
+          vid.src=v;
+          grid2.appendChild(vid);
+        });
+        mContent.appendChild(sec2);
+      }
+
+      // links section
+      if(card.links && card.links.length){
+        var sec3=document.createElement('div');
+        sec3.className='mg-section';
+        sec3.innerHTML='<div class="mg-label" style="color:'+card.color+'">&#128279; 相关链接</div>';
+        card.links.forEach(function(lk){
+          var a=document.createElement('a');
+          a.className='mg-link';
+          a.href=lk.url;
+          a.target='_blank';
+          a.textContent=lk.label;
+          sec3.appendChild(a);
+        });
+        mContent.appendChild(sec3);
+      }
+
+      // empty fallback
+      if(!card.images&&!card.videos&&!card.links){
+        mContent.innerHTML='<div class="mg-empty">暂无作品内容，后续将补充</div>';
+      }
+
+      overlay.classList.add('open');
+    }
+
+    function closeModal(){ overlay.classList.remove('open'); }
+    closeBtn.addEventListener('click',closeModal);
+    overlay.addEventListener('click',function(e){ if(e.target===overlay) closeModal(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+
+    var cardData=[
+      {title:'826 航旅节',tag:'LIVE EVENT',color:'#FF2E97',anim:'floatCard1',top:'12%',left:'4%',
+       images:['images/event/1.benner.png','images/event/主视觉.png','images/event/线下拍摄.png'],
+       videos:['videos/event/1(1).mp4','videos/event/航旅2.mp4','videos/event/航旅封面高码率.mp4'],
+       links:[]},
+      {title:'小美 IP 矩阵',tag:'BRAND IP',color:'#27E6E6',anim:'floatCard2',top:'30%',left:'72%',
+       images:['images/ip/ip设计.png'],
+       videos:['videos/ip/小美ai.mp4','videos/ip/ip形象节日视频.mp4','videos/ip/财神日.mp4','videos/ip/七一香港回归.mp4','videos/ip/七夕.mp4','videos/ip/中秋.mp4','videos/ip/元旦.mp4','videos/ip/圣诞节.mp4'],
+       links:[]},
+      {title:'RED 双账号运营',tag:'NEW MEDIA',color:'#8A5BFF',anim:'floatCard3',top:'55%',left:'2%',
+       images:['images/social/ScreenShot_2026-07-03_165951_174.png','images/social/ScreenShot_2026-07-03_170725_793.png','images/social/ScreenShot_2026-07-03_172823_629.png','images/social/宣传图.png'],
+       videos:['videos/social/5.mp4'],
+       links:[]},
+      {title:'航司合作沙龙',tag:'AIRLINE PARTNERS',color:'#FFD23F',anim:'floatCard4',top:'74%',left:'70%',
+       images:['images/airline/新客專享券包_9比16海報.png'],
+       videos:['videos/airline/达美视频-导出.mp4'],
+       links:[]}
+    ];
+
+    cardData.forEach(function(cd){
+      var wrapper=document.createElement('div');
+      wrapper.className='eb-card-wrapper';
+      wrapper.style.top=cd.top; wrapper.style.right='auto'; wrapper.style.left=cd.left;
+      wrapper.style.animation=cd.anim+' 22s ease-in-out infinite';
+      wrapper.style.setProperty('--accent',cd.color);
+
+      // Glow layer
+      var glow=document.createElement('div');
+      glow.className='eb-glow-layer';
+      glow.style.borderColor=cd.color;
+      glow.style.boxShadow='0 0 20px '+cd.color;
+
+      var inner=document.createElement('div');
+      inner.className='eb-inner';
+      inner.innerHTML='<div class="eb-tag" style="color:'+cd.color+'">'+cd.tag+'</div><h4>'+cd.title+'</h4>';
+
+      wrapper.appendChild(glow);
+      wrapper.appendChild(inner);
+      fcContainer.appendChild(wrapper);
+
+      // click -> open modal
+      wrapper.style.cursor='pointer';
+      wrapper.addEventListener('click',function(){ openModal(cd); });
+
+      // Init electric border
+      createElectricBorder(wrapper,{
+        color:cd.color, speed:0.8, chaos:0.12, thickness:2, borderRadius:18
+      });
+
+      // 3D tilt on hover
+      if(hover && !reduce){
+        var tiltEl=wrapper;
+        tiltEl.addEventListener("mousemove",function(e){
+          var r=tiltEl.getBoundingClientRect();
+          var px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+          var rx=(py-.5)*-14, ry=(px-.5)*14;
+          var glow=tiltEl.querySelector(".eb-glow-layer");
+          if(glow){ glow.style.transform="translateZ(10px)"; }
+          var inner=tiltEl.querySelector(".eb-inner");
+          if(inner){ inner.style.transform="translateZ(6px)"; }
+          tiltEl.style.transform="perspective(800px) rotateX("+rx+"deg) rotateY("+ry+"deg) scale3d(1.04,1.04,1.04)";
+          tiltEl.style.transition="transform .08s ease";
+        });
+        tiltEl.addEventListener("mouseleave",function(){
+          var glow=tiltEl.querySelector(".eb-glow-layer");
+          if(glow){ glow.style.transform=""; }
+          var inner=tiltEl.querySelector(".eb-inner");
+          if(inner){ inner.style.transform=""; }
+          tiltEl.style.transform="";
+          tiltEl.style.transition="transform .4s ease";
+        });
+      }
+    });
+  })();
+
+
+  /* ---- FuzzyText — vanilla JS canvas text displacement ---- */
+  /* Ported from React Bits <FuzzyText /> */
+  function createFuzzyText(container, opts){
+    opts = opts || {};
+    var text = opts.text || '';
+    var fontSize = opts.fontSize || 'clamp(2rem, 8vw, 8rem)';
+    var fontWeight = opts.fontWeight || 900;
+    var fontFamily = opts.fontFamily || '"Space Grotesk",sans-serif';
+    var color = opts.color || '#fff';
+    var enableHover = opts.enableHover !== false;
+    var baseIntensity = opts.baseIntensity || 0.18;
+    var hoverIntensity = opts.hoverIntensity || 0.5;
+    var fuzzRange = opts.fuzzRange || 30;
+    var fps = opts.fps || 60;
+    var direction = opts.direction || 'horizontal';
+    var transitionDuration = opts.transitionDuration || 0;
+    var clickEffect = opts.clickEffect || false;
+    var glitchMode = opts.glitchMode || false;
+    var glitchInterval = opts.glitchInterval || 2000;
+    var glitchDuration = opts.glitchDuration || 200;
+    var gradient = opts.gradient || null;
+    var letterSpacing = opts.letterSpacing || 0;
+    var className = opts.className || '';
+
+    var canvas = document.createElement('canvas');
+    canvas.className = className;
+    canvas.style.cssText = 'display:block;max-width:100%;height:auto;';
+    container.style.position = container.style.position || 'relative';
+    container.appendChild(canvas);
+
+    var ctx = canvas.getContext('2d');
+    if(!ctx) return function(){};
+
+    var animId, isCancelled = false;
+    var glitchTimeoutId, glitchEndTimeoutId, clickTimeoutId;
+    var computedFontFamily = fontFamily === 'inherit'
+      ? window.getComputedStyle(canvas).fontFamily || 'sans-serif'
+      : fontFamily;
+    var fontSizeStr = typeof fontSize === 'number' ? fontSize+'px' : fontSize;
+    var fontString = fontWeight+' '+fontSizeStr+' '+computedFontFamily;
+
+    document.fonts.load(fontString).catch(function(){ return document.fonts.ready; }).then(function(){
+      if(isCancelled) return;
+
+      var numericFontSize;
+      if(typeof fontSize === 'number'){
+        numericFontSize = fontSize;
+      } else {
+        var temp = document.createElement('span');
+        temp.style.fontSize = fontSize;
+        document.body.appendChild(temp);
+        numericFontSize = parseFloat(window.getComputedStyle(temp).fontSize);
+        document.body.removeChild(temp);
+      }
+
+      var offscreen = document.createElement('canvas');
+      var offCtx = offscreen.getContext('2d');
+      if(!offCtx) return;
+
+      offCtx.font = fontWeight+' '+fontSizeStr+' '+computedFontFamily;
+      offCtx.textBaseline = 'alphabetic';
+
+      var totalWidth = 0;
+      if(letterSpacing !== 0){
+        for(var ci=0;ci<text.length;ci++){
+          totalWidth += offCtx.measureText(text[ci]).width + letterSpacing;
+        }
+        totalWidth -= letterSpacing;
+      } else {
+        totalWidth = offCtx.measureText(text).width;
+      }
+
+      var metrics = offCtx.measureText(text);
+      var actualLeft = metrics.actualBoundingBoxLeft || 0;
+      var actualRight = letterSpacing !== 0 ? totalWidth : (metrics.actualBoundingBoxRight || metrics.width);
+      var actualAscent = metrics.actualBoundingBoxAscent || numericFontSize;
+      var actualDescent = metrics.actualBoundingBoxDescent || numericFontSize * 0.2;
+
+      var textBoundingWidth = Math.ceil(letterSpacing !== 0 ? totalWidth : actualLeft + actualRight);
+      var tightHeight = Math.ceil(actualAscent + actualDescent);
+      var extraWidthBuffer = 10;
+      var offscreenWidth = textBoundingWidth + extraWidthBuffer;
+
+      offscreen.width = offscreenWidth;
+      offscreen.height = tightHeight;
+
+      var xOffset = extraWidthBuffer / 2;
+      offCtx.font = fontWeight+' '+fontSizeStr+' '+computedFontFamily;
+      offCtx.textBaseline = 'alphabetic';
+
+      if(gradient && gradient.length >= 2){
+        var grad = offCtx.createLinearGradient(0, 0, offscreenWidth, 0);
+        for(var gi=0;gi<gradient.length;gi++){
+          grad.addColorStop(gi/(gradient.length-1), gradient[gi]);
+        }
+        offCtx.fillStyle = grad;
+      } else {
+        offCtx.fillStyle = color;
+      }
+
+      if(letterSpacing !== 0){
+        var xPos = xOffset;
+        for(var chi=0;chi<text.length;chi++){
+          offCtx.fillText(text[chi], xPos, actualAscent);
+          xPos += offCtx.measureText(text[chi]).width + letterSpacing;
+        }
+      } else {
+        offCtx.fillText(text, xOffset - actualLeft, actualAscent);
+      }
+
+      var horizontalMargin = fuzzRange + 20;
+      var verticalMargin = 0;
+      canvas.width = offscreenWidth + horizontalMargin * 2;
+      canvas.height = tightHeight + verticalMargin * 2;
+      ctx.translate(horizontalMargin, verticalMargin);
+
+      var interactiveLeft = horizontalMargin + xOffset;
+      var interactiveTop = verticalMargin;
+      var interactiveRight = interactiveLeft + textBoundingWidth;
+      var interactiveBottom = interactiveTop + tightHeight;
+
+      var isHovering = false, isClicking = false, isGlitching = false;
+      var currentIntensity = baseIntensity, targetIntensity = baseIntensity;
+      var lastFrameTime = 0;
+      var frameDuration = 1000 / fps;
+
+      function startGlitchLoop(){
+        if(!glitchMode || isCancelled) return;
+        glitchTimeoutId = setTimeout(function(){
+          if(isCancelled) return;
+          isGlitching = true;
+          glitchEndTimeoutId = setTimeout(function(){
+            isGlitching = false;
+            startGlitchLoop();
+          }, glitchDuration);
+        }, glitchInterval);
+      }
+      if(glitchMode) startGlitchLoop();
+
+      function run(timestamp){
+        if(isCancelled) return;
+        if(timestamp - lastFrameTime < frameDuration){
+          animId = requestAnimationFrame(run);
+          return;
+        }
+        lastFrameTime = timestamp;
+
+        ctx.clearRect(-fuzzRange-20, -fuzzRange-10, offscreenWidth+2*(fuzzRange+20), tightHeight+2*(fuzzRange+10));
+
+        if(isClicking) targetIntensity = 1;
+        else if(isGlitching) targetIntensity = 1;
+        else if(isHovering) targetIntensity = hoverIntensity;
+        else targetIntensity = baseIntensity;
+
+        if(transitionDuration > 0){
+          var stepAmt = 1 / (transitionDuration / frameDuration);
+          if(currentIntensity < targetIntensity) currentIntensity = Math.min(currentIntensity+stepAmt, targetIntensity);
+          else if(currentIntensity > targetIntensity) currentIntensity = Math.max(currentIntensity-stepAmt, targetIntensity);
+        } else {
+          currentIntensity = targetIntensity;
+        }
+
+        if(direction === 'horizontal'){
+          for(var row=0; row<tightHeight; row++){
+            var dx = Math.floor(currentIntensity * (Math.random()-0.5) * fuzzRange);
+            ctx.drawImage(offscreen, 0, row, offscreenWidth, 1, dx, row, offscreenWidth, 1);
+          }
+        } else if(direction === 'vertical'){
+          for(var col=0; col<offscreenWidth; col++){
+            var dy = Math.floor(currentIntensity * (Math.random()-0.5) * fuzzRange);
+            ctx.drawImage(offscreen, col, 0, 1, tightHeight, col, dy, 1, tightHeight);
+          }
+        } else {
+          for(var r=0; r<tightHeight; r++){
+            var dx2 = Math.floor(currentIntensity * (Math.random()-0.5) * fuzzRange);
+            ctx.drawImage(offscreen, 0, r, offscreenWidth, 1, dx2, r, offscreenWidth, 1);
+          }
+          var tempData = ctx.getImageData(0, 0, offscreenWidth+fuzzRange, tightHeight+fuzzRange);
+          ctx.clearRect(-fuzzRange-20, -fuzzRange-10, offscreenWidth+2*(fuzzRange+20), tightHeight+2*(fuzzRange+10));
+          ctx.putImageData(tempData, 0, 0);
+          for(var c=0; c<offscreenWidth+fuzzRange; c++){
+            var dy2 = Math.floor(currentIntensity * (Math.random()-0.5) * fuzzRange * 0.5);
+            var colData = ctx.getImageData(c, 0, 1, tightHeight+fuzzRange);
+            ctx.clearRect(c, -fuzzRange, 1, tightHeight+2*fuzzRange);
+            ctx.putImageData(colData, c, dy2);
+          }
+        }
+        animId = requestAnimationFrame(run);
+      }
+
+      animId = requestAnimationFrame(run);
+
+      function isInsideTextArea(x, y){
+        return x >= interactiveLeft && x <= interactiveRight && y >= interactiveTop && y <= interactiveBottom;
+      }
+
+      function handleMouseMove(e){
+        if(!enableHover) return;
+        var rect = canvas.getBoundingClientRect();
+        var mx = e.clientX - rect.left;
+        var my = e.clientY - rect.top;
+        isHovering = isInsideTextArea(mx, my);
+      }
+      function handleMouseLeave(){ isHovering = false; }
+      function handleClick(){
+        if(!clickEffect) return;
+        isClicking = true;
+        clearTimeout(clickTimeoutId);
+        clickTimeoutId = setTimeout(function(){ isClicking = false; }, 150);
+      }
+
+      if(enableHover){
+        canvas.addEventListener('mousemove', handleMouseMove);
+        canvas.addEventListener('mouseleave', handleMouseLeave);
+      }
+      if(clickEffect) canvas.addEventListener('click', handleClick);
+
+      canvas._fuzzyCleanup = function(){
+        cancelAnimationFrame(animId);
+        clearTimeout(glitchTimeoutId);
+        clearTimeout(glitchEndTimeoutId);
+        clearTimeout(clickTimeoutId);
+        if(enableHover){
+          canvas.removeEventListener('mousemove', handleMouseMove);
+          canvas.removeEventListener('mouseleave', handleMouseLeave);
+        }
+        if(clickEffect) canvas.removeEventListener('click', handleClick);
+      };
+    });
+
+    return function destroy(){
+      isCancelled = true;
+      cancelAnimationFrame(animId);
+      if(canvas._fuzzyCleanup) canvas._fuzzyCleanup();
+      if(canvas.parentNode) canvas.parentNode.removeChild(canvas);
+    };
+  }
+
+  /* ---- Apply FuzzyText to target words ---- */
+  (function(){
+    if(reduce) return;
+    var targets = document.querySelectorAll('[data-fuzzy]');
+    targets.forEach(function(el){
+      var text = el.getAttribute('data-fuzzy') || el.textContent;
+      el.textContent = '';
+      var gradStr = el.dataset.fuzzyGradient || '';
+      var gradient = gradStr ? gradStr.split(',').map(function(s){ return s.trim(); }) : null;
+      createFuzzyText(el, {
+        text: text,
+        color: el.dataset.fuzzyColor || '#fff',
+        gradient: gradient,
+        fontSize: el.dataset.fuzzySize || 'clamp(2rem, 8vw, 8rem)',
+        baseIntensity: parseFloat(el.dataset.fuzzyBase) || 0.2,
+        hoverIntensity: parseFloat(el.dataset.fuzzyHover) || 0.5,
+        enableHover: true,
+        direction: el.dataset.fuzzyDir || 'horizontal',
+        glitchMode: el.dataset.fuzzyGlitch !== 'false',
+        glitchInterval: parseInt(el.dataset.fuzzyGlitchInt) || 2500,
+        glitchDuration: parseInt(el.dataset.fuzzyGlitchDur) || 200,
+        fuzzRange: parseInt(el.dataset.fuzzyRange) || 30,
+        fps: 60,
+        clickEffect: true
+      });
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>
