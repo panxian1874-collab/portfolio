@@ -906,12 +906,45 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
       mTag.style.color=card.color;
       mContent.innerHTML='';
 
-      // images section
-      if(card.images && card.images.length){
-        var sec=document.createElement('div');
-        sec.className='mg-section';
-        sec.innerHTML='<div class="mg-label" style="color:'+card.color+'">&#128247; 图片</div><div class="mg-grid"></div>';
-        var grid=sec.querySelector('.mg-grid');
+      // tabbed view
+      var hasImages = card.images && card.images.length;
+      var hasVideos = card.videos && card.videos.length;
+      if(!hasImages && !hasVideos){
+        mContent.innerHTML='<div class="mg-empty">暂无作品内容，后续将补充</div>';
+        overlay.classList.add('open');
+        return;
+      }
+      var tabBar=document.createElement('div');
+      tabBar.style.cssText='display:flex;gap:.5rem;margin-bottom:1.2rem;border-bottom:2px solid var(--line);padding-bottom:.5rem';
+      var imgTab, vidTab, imgPanel, vidPanel, activeTab='images';
+      if(hasImages){
+        imgTab=document.createElement('button');
+        imgTab.textContent='\u{1F4F7} 图片';
+        imgTab.style.cssText='padding:.5rem 1.2rem;border:none;border-radius:999px;font-family:"Space Grotesk",sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:.25s;background:'+card.color+';color:#08070d';
+        tabBar.appendChild(imgTab);
+      }
+      if(hasVideos){
+        vidTab=document.createElement('button');
+        vidTab.textContent='\u{1F3AC} 视频';
+        vidTab.style.cssText='padding:.5rem 1.2rem;border:none;border-radius:999px;font-family:"Space Grotesk",sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:.25s;background:'+(hasImages?'transparent':card.color)+';color:'+(hasImages?'var(--ink-soft)':'#08070d');
+        tabBar.appendChild(vidTab);
+      }
+      if(!hasImages) activeTab='videos';
+      mContent.appendChild(tabBar);
+      function switchTab(tab){
+        activeTab=tab;
+        imgTab.style.background=tab==='images'?card.color:'transparent';
+        imgTab.style.color=tab==='images'?'#08070d':'var(--ink-soft)';
+        vidTab.style.background=tab==='videos'?card.color:'transparent';
+        vidTab.style.color=tab==='videos'?'#08070d':'var(--ink-soft)';
+        imgPanel.style.display=tab==='images'?'flex':'none';
+        vidPanel.style.display=tab==='videos'?'flex':'none';
+      }
+      if(hasImages){
+        imgPanel=document.createElement('div');
+        imgPanel.style.cssText='display:'+(activeTab==='images'?'flex':'none')+';flex-direction:column;gap:.8rem';
+        var grid=document.createElement('div');
+        grid.className='mg-grid';
         card.images.forEach(function(src){
           var img=document.createElement('img');
           img.loading='lazy';
@@ -919,45 +952,23 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
           img.addEventListener('click',function(){ window.open(src,'_blank'); });
           grid.appendChild(img);
         });
-        mContent.appendChild(sec);
+        imgPanel.appendChild(grid);
+        mContent.appendChild(imgPanel);
+        imgTab.addEventListener('click',function(){ switchTab('images'); });
       }
-
-      // videos section
-      if(card.videos && card.videos.length){
-        var sec2=document.createElement('div');
-        sec2.className='mg-section';
-        sec2.innerHTML='<div class="mg-label" style="color:'+card.color+'">&#127916; 视频</div><div class="mg-grid"></div>';
-        var grid2=sec2.querySelector('.mg-grid');
+      if(hasVideos){
+        vidPanel=document.createElement('div');
+        vidPanel.style.cssText='display:'+(activeTab==='videos'?'flex':'none')+';flex-direction:column;gap:.8rem';
         card.videos.forEach(function(v){
           var vid=document.createElement('video');
-          vid.className='mg-video';
           vid.controls=true;
           vid.preload='metadata';
           vid.src=v;
-          grid2.appendChild(vid);
+          vid.style.cssText='width:100%;border-radius:10px;border:1px solid var(--line);background:#000;aspect-ratio:16/9;object-fit:contain';
+          vidPanel.appendChild(vid);
         });
-        mContent.appendChild(sec2);
-      }
-
-      // links section
-      if(card.links && card.links.length){
-        var sec3=document.createElement('div');
-        sec3.className='mg-section';
-        sec3.innerHTML='<div class="mg-label" style="color:'+card.color+'">&#128279; 相关链接</div>';
-        card.links.forEach(function(lk){
-          var a=document.createElement('a');
-          a.className='mg-link';
-          a.href=lk.url;
-          a.target='_blank';
-          a.textContent=lk.label;
-          sec3.appendChild(a);
-        });
-        mContent.appendChild(sec3);
-      }
-
-      // empty fallback
-      if(!card.images&&!card.videos&&!card.links){
-        mContent.innerHTML='<div class="mg-empty">暂无作品内容，后续将补充</div>';
+        mContent.appendChild(vidPanel);
+        vidTab.addEventListener('click',function(){ switchTab('videos'); });
       }
 
       overlay.classList.add('open');
