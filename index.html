@@ -959,14 +959,17 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
       if(hasVideos){
         vidPanel=document.createElement('div');
         vidPanel.style.cssText='display:'+(activeTab==='videos'?'flex':'none')+';flex-direction:column;gap:.5rem';
+        var vidGrid=document.createElement('div');
+        vidGrid.className='mg-grid';
         card.videos.forEach(function(v){
           var vid=document.createElement('video');
           vid.controls=true;
           vid.preload='metadata';
           vid.src=v;
-          vid.style.cssText='width:100%;border-radius:8px;border:1px solid var(--line);background:#000;aspect-ratio:16/9;object-fit:contain';
-          vidPanel.appendChild(vid);
+          vid.className='mg-video';
+          vidGrid.appendChild(vid);
         });
+        vidPanel.appendChild(vidGrid);
         mContent.appendChild(vidPanel);
         vidTab.addEventListener('click',function(){ switchTab('videos'); });
       }
