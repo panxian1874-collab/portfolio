@@ -344,6 +344,18 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
 #showcase .sw-tab.active{background:var(--cyan);color:#08070d;border-color:var(--cyan);box-shadow:0 0 20px -6px var(--cyan)}
 #showcase .sw-panel{display:none}
 #showcase .sw-panel.active{display:block}
+#showcase .sw-card{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:1.5rem;
+  position:relative;overflow:hidden}
+#showcase .sw-card::before{content:"";position:absolute;inset:-2px;border-radius:20px;padding:2px;
+  background:conic-gradient(from var(--angle,0deg) at 50% 50%,transparent 0deg,
+    var(--cyan) 60deg,var(--magenta) 120deg,var(--purple) 180deg,var(--magenta) 240deg,var(--cyan) 300deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6;transition:opacity .4s}
+#showcase .sw-card:hover::before{opacity:1}
+@supports not (background:conic-gradient(#fff,#000)){.sw-card::before{display:none}}
+#showcase .sw-card-label{font-family:"Space Grotesk",sans-serif;font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+#showcase .sw-card-label::after{content:"";flex:1;height:1px;background:var(--line)}
 #showcase .sw-link{display:flex;align-items:center;gap:.8rem;padding:1rem 1.2rem;border:1.5px solid var(--line);
   border-radius:14px;background:var(--surface);text-decoration:none;color:var(--ink);
   transition:.25s;position:relative;overflow:hidden}
@@ -609,7 +621,7 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
     <button class="sw-tab" data-tab="event">活动内容</button>
   </div>
   <div class="sw-panels">
-    <div class="sw-panel active" id="swDesign"><div class="mg-grid">
+    <div class="sw-panel active" id="swDesign"><div class="sw-card"><div class="sw-card-label">设计作品</div><div class="mg-grid">
       <img loading="lazy" src="images/event/1.benner.png" onclick="window.open('images/event/1.benner.png','_blank')">
       <img loading="lazy" src="images/event/主视觉.png" onclick="window.open('images/event/主视觉.png','_blank')">
       <img loading="lazy" src="images/event/线下拍摄.png" onclick="window.open('images/event/线下拍摄.png','_blank')">
@@ -620,7 +632,7 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
       <img loading="lazy" src="images/social/宣传图.png" onclick="window.open('images/social/宣传图.png','_blank')">
       <img loading="lazy" src="images/airline/新客專享券包_9比16海報.png" onclick="window.open('images/airline/新客專享券包_9比16海報.png','_blank')">
     </div></div>
-    <div class="sw-panel" id="swVideo"><div class="mg-grid">
+    <div class="sw-panel" id="swVideo"><div class="sw-card"><div class="sw-card-label">视频作品</div><div class="mg-grid">
       <video class="mg-video" controls preload="metadata" src="videos/event/1(1).mp4"></video>
       <video class="mg-video" controls preload="metadata" src="videos/event/航旅2.mp4"></video>
       <video class="mg-video" controls preload="metadata" src="videos/event/航旅封面高码率.mp4"></video>
@@ -634,9 +646,8 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
       <video class="mg-video" controls preload="metadata" src="videos/ip/圣诞节.mp4"></video>
       <video class="mg-video" controls preload="metadata" src="videos/social/5.mp4"></video>
       <video class="mg-video" controls preload="metadata" src="videos/airline/达美视频-导出.mp4"></video>
-    </div></div>
-    <div class="sw-panel" id="swRed">
-      <div class="mg-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
+    </div></div></div>
+    <div class="sw-panel" id="swRed"><div class="sw-card"><div class="sw-card-label">小红书账号</div><div class="mg-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
         <a class="sw-link" href="https://www.xiaohongshu.com/user/profile/5d08e0b4000000001100fe5f?xsec_token=ABWRs7swvE45i0hc828f2nKVybWe2cPswgp97cbiolCXc=&xsec_source=pc_like" target="_blank" rel="noopener">
           <span class="sw-link-icon">📕</span>
           <span class="sw-link-title">美亚联盟荟<br><small>B2B机票分销</small></span>
@@ -647,9 +658,9 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
           <span class="sw-link-title">美亚商旅<br><small>企业差旅</small></span>
           <span class="sw-link-arrow">↗</span>
         </a>
-      </div>
+      </div></div>
     </div>
-    <div class="sw-panel" id="swEvent"><div class="mg-empty">大型线下活动影像记录整理中，即将上线</div></div>
+    <div class="sw-panel" id="swEvent"><div class="sw-card"><div class="sw-card-label">活动内容</div><div class="mg-empty">大型线下活动影像记录整理中，即将上线</div></div>
   </div>
 </section>
 
