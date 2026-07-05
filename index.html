@@ -335,14 +335,15 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
 .mg-empty{text-align:center;padding:1.5rem;color:var(--ink-soft);font-family:"VT323",monospace;font-size:.95rem;
   border:1.5px dashed var(--line);border-radius:12px}
 /* ---- Showcase Section ---- */
-#showcase .sw-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+#showcase .sw-tabs{display:none}
 #showcase .sw-tab{padding:.6rem 1.4rem;border:1.5px solid var(--line);border-radius:999px;
   background:transparent;color:var(--ink-soft);font-family:"Space Grotesk",sans-serif;
   font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
   cursor:pointer;transition:.25s}
 #showcase .sw-tab:hover{border-color:var(--cyan);color:var(--cyan)}
 #showcase .sw-tab.active{background:var(--cyan);color:#08070d;border-color:var(--cyan);box-shadow:0 0 20px -6px var(--cyan)}
-#showcase .sw-panel{display:none}
+#showcase .sw-panels{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+#showcase .sw-panel{display:block}
 #showcase .sw-panel.active{display:block}
 #showcase .sw-card{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:1.5rem;
   position:relative;overflow:hidden}
@@ -378,6 +379,7 @@ nav a:hover{background:var(--cyan);color:#08070d;transform:translateY(-2px) rota
   .numcard{grid-column:span 1 !important}
   .mods{grid-template-columns:1fr}
   #values .vgrid{grid-template-columns:1fr}
+  #showcase .sw-panels{grid-template-columns:1fr}
   .hero-name{font-size:30vw}
   .marquee .track{font-size:1.2rem}
   .float{transform:scale(.7)}
